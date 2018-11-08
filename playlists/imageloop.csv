@@ -1,6 +1,7 @@
-type,name,timing
+type,name,timing,r,g,b
 image,gifs/ase1.gif,default
-text,Hello Town,default
+text,Hello,default,255,0,0
+text,Town,default,0,0,255
 image,gifs/ase2.gif,default
 image,gifs/ase3.gif,default
 image,gifs/ase4.gif,default

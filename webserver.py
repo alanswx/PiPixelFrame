@@ -153,7 +153,7 @@ class DisplayShowPlaylistThread(StoppableThread):
           elif (entry['type']=='rainbow'):
               janim.rainbow_leftright(self.strip, 1, dir=20, func=self.stopped)
           elif (entry['type']=='text'):
-              janim.scroll_text(self.strip, entry['name'], func=self.stopped)
+              janim.scroll_text(self.strip, entry['name'], textcolor=(entry['r'],entry['g'],entry['b']), func=self.stopped)
 
   
 

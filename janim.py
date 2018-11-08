@@ -121,7 +121,7 @@ def theaterChaseRainbow(strip, wait_ms=50):
 			for i in range(0, strip.numPixels(), 3):
 				strip.setPixelColor(i+q, 0)
 
-def scroll_text(strip, txt, wait_ms=100, func=None):
+def scroll_text(strip, txt, wait_ms=100, textcolor=(255,255,255),func=None):
   fnt = fontdemo.Font('helvetica.ttf', 11)
   txt = fnt.render_text('  ' + txt +'  ', 14, 8)
 
@@ -131,7 +131,7 @@ def scroll_text(strip, txt, wait_ms=100, func=None):
         c = Color(0,0,0)
         if x2+x < txt.width: 
           if txt.pixels[(y*txt.width)+(x+x2)]:
-            c = Color(255,255,255)
+            c = textcolor #Color(255,255,255)
         setp(strip, 7-x2,y,c)
     strip.show()
     if func and func(): return
