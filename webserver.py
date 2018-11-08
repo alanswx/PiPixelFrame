@@ -76,7 +76,8 @@ class DisplayGifThread(StoppableThread):
     self.filename = filename
 
   def run(self):
-    janim.animated_gif(self.strip, self.filename, func=self.stopped) 
+    while not self.stopped():
+       janim.animated_gif(self.strip, self.filename, func=self.stopped) 
 
 class DisplayTextThread(StoppableThread):
   def __init__(self, strip, text):
@@ -153,7 +154,7 @@ class DisplayShowPlaylistThread(StoppableThread):
           elif (entry['type']=='rainbow'):
               janim.rainbow_leftright(self.strip, 1, dir=20, func=self.stopped)
           elif (entry['type']=='text'):
-              janim.scroll_text(self.strip, entry['name'], textcolor=(entry['r'],entry['g'],entry['b']), func=self.stopped)
+              janim.scroll_text(self.strip, entry['name'], textcolor=(int(entry['r']),int(entry['g']),int(entry['b'])), func=self.stopped)
 
   
 
