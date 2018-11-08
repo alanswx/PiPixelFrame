@@ -137,11 +137,11 @@ class DisplayShowPlaylistThread(StoppableThread):
     super(DisplayShowPlaylistThread, self).__init__()
     # load the playlist
     self.playlist=playlistloader(playlist)
+    self.strip = strip
 
   def run(self):
     print('DisplayShowPlaylistThread - run')
     print(self.playlist)
-    self.strip = strip
     while not self.stopped():
        for entry in self.playlist:
           print('entry:',entry)
