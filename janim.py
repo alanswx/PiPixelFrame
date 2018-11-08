@@ -131,7 +131,7 @@ def scroll_text(strip, txt, wait_ms=100, textcolor=(255,255,255),func=None):
         c = Color(0,0,0)
         if x2+x < txt.width: 
           if txt.pixels[(y*txt.width)+(x+x2)]:
-            c = textcolor #Color(255,255,255)
+            c = Color(textcolor[0],textcolor[1],textcolor[2]) #Color(255,255,255)
         setp(strip, 7-x2,y,c)
     strip.show()
     if func and func(): return
@@ -164,7 +164,8 @@ def animated_gif(strip, name,wait_ms=500,func=None):
       print(duration)
       time.sleep(duration/1000.0)
   if func and func(): return
- except Exception :
+ except Exception as e:
+       print('GIF Exception',e)
        pass
           
 def main():    
