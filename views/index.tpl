@@ -11,13 +11,17 @@
 <br>
     <a href="/ap_mode">AP Mode</a>
 <br>
+<!---
 <br>
     <a href="/piskel/index.html">Piskel Editor</a>
 <br>
     <a href="/gallery">Gallery</a>
+<br>
+--!>
     <a href="/gifgallery">GIF Gallery</a>
 <br>
-    <a href="/playshow">Play Show</a>
+    <a href="/playlists/">Playlist Gallery</a>
+<br>
 
   </body>
 </html>
