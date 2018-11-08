@@ -359,7 +359,7 @@ def start():
     clear_display(app.strip)
 
     #app.displayThread = DisplayJAnimThread(app.strip)
-    app.displayThread = DisplayShowPlaylistThread(app.strip,'playlists/imageloop.csv'):
+    app.displayThread = DisplayShowPlaylistThread(app.strip,'playlists/imageloop.csv')
     app.displayThread.start()
   else:
     app.strip = None
