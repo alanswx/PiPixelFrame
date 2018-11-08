@@ -229,6 +229,17 @@ def showplaylists():
     playlists.append({'name':fn})
   return bottle.template("playlist_gallery", playlists=playlists)
 
+@app.route("/showtext")
+  print (bottle.request.forms.items())
+  text = int(bottle.request.query.get('text'))
+  r= int(bottle.request.query.get('r'))
+  g= int(bottle.request.query.get('g'))
+  b= int(bottle.request.query.get('b'))
+  if neopixel:
+     app.displayThread.stop()
+     app.displayThread = DisplayTextThread(app.strip, text)
+     app.displayThread.start()
+  return 'text:'
 
 @app.route("/playshow/<filepath:re:.*\.(csv)>")
 def displayplaylist(filepath):
