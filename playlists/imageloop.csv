@@ -1,5 +1,6 @@
 type,name,timing
 image,gifs/ase1.gif,default
+text,Hello Town,default
 image,gifs/ase2.gif,default
 image,gifs/ase3.gif,default
 image,gifs/ase4.gif,default

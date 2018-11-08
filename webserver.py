@@ -152,6 +152,8 @@ class DisplayShowPlaylistThread(StoppableThread):
               janim.colorWipe(self.strip, neopixel.Color(255, 0, 0), func=self.stopped)  # Red wipe
           elif (entry['type']=='rainbow'):
               janim.rainbow_leftright(self.strip, 1, dir=20, func=self.stopped)
+          elif (entry['type']=='text'):
+              janim.scroll_text(self.strip, entry['name'], func=self.stopped)
 
   
 
