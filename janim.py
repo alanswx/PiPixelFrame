@@ -137,12 +137,12 @@ def scroll_text(strip, txt, wait_ms=100, func=None):
     if func and func(): return
     time.sleep(wait_ms/1000.0)
 
-def animated_gif(strip, name,wait_ms=100,func=None):
+def animated_gif(strip, name,wait_ms=500,func=None):
  try:
   print('animated_gif',name)
   im = Image.open(name)
   seq=[]
-  if False:
+  if True:
    try:
     while 1:
        seq.append((im.copy(),im.info['duration']))
@@ -159,6 +159,9 @@ def animated_gif(strip, name,wait_ms=100,func=None):
            setp(strip, x,y,c)
       strip.show()
       print('duration',im.info['duration'])
+      if (duration==0):
+         duration=wait_ms
+      print(duration)
       time.sleep(duration/1000.0)
   if func and func(): return
  except Exception :
