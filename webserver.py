@@ -17,6 +17,8 @@ import glob
 import janim
 import threading
 
+import csv
+
 #import fake_neopixel
 try:
   import neopixel
@@ -29,7 +31,7 @@ LED_PIN        = 18      # GPIO pin connected to the pixels (must support PWM!).
 LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
 LED_DMA        = 5       # DMA channel to use for generating signal (try 5)
 #LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
-LED_BRIGHTNESS = 32     # Set to 0 for darkest and 255 for brightest
+LED_BRIGHTNESS = 128     # Set to 0 for darkest and 255 for brightest
 LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
 
 app = bottle.Bottle()
@@ -108,11 +110,34 @@ class DisplayJAnimThread(StoppableThread):
         janim.rainbow_updown(self.strip, 1, dir=20, func=self.stopped)
         janim.rainbow_updown(self.strip, 1, dir=-20, func=self.stopped)
 
+def playlistloader(name):
+  column_names=[]
+  playlists=[]
+  with open(name, 'rb') as csvfile:
+     csvreader= csv.reader(csvfile)
+     for row in csvreader:
+         if not len(column_names):
+            for col in row:
+              column_names.append(col)
+         else:
+            print(column_names)
+            cur = {}
+            i=0
+            for col in row:
+              cur[column_names[i]]=col
+              i=i+1
+            playlists.append(cur)
+     print(playlists)
+  return playlists
   
-class DisplayShowThread(StoppableThread):
-  def __init__(self, strip):
-    super(DisplayShowThread, self).__init__()
-    
+class DisplayShowPlaylistThread(StoppableThread):
+  def __init__(self, strip,playlist):
+    super(DisplayShowPlaylistThread, self).__init__()
+    # load the playlist
+    with open(playlist, 'rb') as csvfile:
+      csvreader= csv.reader(csvfile, delimiter=',', quotechar='|')
+      for row in csvreader:
+         print ', '.join(row) 
     self.strip = strip
 
   def run(self):
@@ -187,13 +212,34 @@ def showgif(filepath):
      app.displayThread.start()
   return "showgif:"+filepath
 
-@app.route("/playshow>")
-def showgif(filepath):
+@app.route("/playlists/<filepath:re:.*\.(csv)>")
+def showplaylist(filepath):
+  playlists= []
+  print(filepath)
+  playlists = playlistloader('playlists/'+filepath)
+  with open('playlists/'+filepath, 'rb') as csvfile:
+     csvreader= csv.reader(csvfile, delimiter=',', quotechar='|')
+     for row in csvreader:
+         playlists.append(row)
+     print(playlists)
+  return bottle.template("playlist", playlist=playlists)
+
+@app.route("/playlists/")
+def showplaylists():
+  playlists= []
+  files = glob.glob("playlists/*.csv")
+  for fn in files:
+    playlists.append({'name':fn})
+  return bottle.template("playlist_gallery", playlists=playlists)
+
+
+@app.route("/playshow/<filepath:re:.*\.(csv)>")
+def displayplaylist(filepath):
   if neopixel:
      app.displayThread.stop()
-     app.displayThread = DisplayShowThread(app.strip, 'gifs/'+filepath)
+     app.displayThread = DisplayShowPlaylistThread(app.strip, 'gifs/'+filepath)
      app.displayThread.start()
-  return "showthread:"+filepath
+  return "showplaylist:"+filepath
 
 
 @app.route('/gifgallery')
