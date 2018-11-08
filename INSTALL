@@ -1,0 +1,10 @@
+
+https://github.com/jgarff/rpi_ws281x
+
+apt-get install pip
+pip install bottle bottle-sqlite
+pip install freetype-py
+pip install netifaces
+pip install Pillow
+
+https://www.raspberrypi.org/forums/viewtopic.php?t=191453

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+iptables -F
+iptables -t nat -F
+echo 0 > /proc/sys/net/ipv4/ip_forward
+
+/etc/init.d/hostapd stop
+/etc/init.d/dnsmasq stop
+
+ifdown wlan0
+
+cp /etc/network/interfaces.wifi /etc/network/interfaces
+
+ifup wlan0
+
+update-rc.d hostapd disable
+update-rc.d dnsmasq disable
+

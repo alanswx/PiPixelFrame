@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+iptables -F
+
+/etc/init.d/hostapd stop
+/etc/init.d/dnsmasq stop
+
+#sudo ifconfig wlan0 down
+ifdown wlan0
+killall dhclient
+
+cp /etc/network/interfaces.ap /etc/network/interfaces
+
+/etc/init.d/dnsmasq start
+/etc/init.d/hostapd start
+#sudo ifconfig wlan0 up
+ifup wlan0
+
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.0.1:80
+iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination 192.168.0.1:443
+iptables -t nat -A POSTROUTING -j MASQUERADE
+
+update-rc.d hostapd enable
+update-rc.d dnsmasq enable
