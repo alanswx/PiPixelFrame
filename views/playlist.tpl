@@ -12,7 +12,6 @@ img {
   <body>
     <h1>Playlists</h1>
 
-  {{line['number']}},{{line['name']}}
 % for line in playlist :
   {{line['number']}},{{line['name']}}
 % end

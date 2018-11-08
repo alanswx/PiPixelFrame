@@ -13,7 +13,8 @@ img {
     <h1>Gallery</h1>
 
 % for anim in playlists:
-  <a href="/{{anim['name']}}">[show]</a>
+  <a href="/{{anim['name']}}">[edit]</a>
+  <a href="/playshow/{{anim['name']}}">[show]</a>
   {{anim['name']}} <br>
 % end
 

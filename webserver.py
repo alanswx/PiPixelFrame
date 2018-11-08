@@ -115,14 +115,16 @@ def playlistloader(name):
   playlists=[]
   with open(name, 'rb') as csvfile:
      csvreader= csv.reader(csvfile)
+     line=0
      for row in csvreader:
          if not len(column_names):
             for col in row:
               column_names.append(col)
          else:
-            print(column_names)
             cur = {}
             i=0
+            cur['number']=line
+            line=line+1
             for col in row:
               cur[column_names[i]]=col
               i=i+1
@@ -134,26 +136,22 @@ class DisplayShowPlaylistThread(StoppableThread):
   def __init__(self, strip,playlist):
     super(DisplayShowPlaylistThread, self).__init__()
     # load the playlist
-    with open(playlist, 'rb') as csvfile:
-      csvreader= csv.reader(csvfile, delimiter=',', quotechar='|')
-      for row in csvreader:
-         print ', '.join(row) 
-    self.strip = strip
+    self.playlist=playlistloader(playlist)
 
   def run(self):
+    print('DisplayShowPlaylistThread - run')
+    print(self.playlist)
+    self.strip = strip
     while not self.stopped():
-      janim.colorWipe(self.strip, neopixel.Color(255, 0, 0), func=self.stopped)  # Red wipe
-      janim.colorWipe(self.strip, neopixel.Color(0, 255, 0), func=self.stopped)  # Blue wipe
-      janim.colorWipe(self.strip, neopixel.Color(0, 0, 255), func=self.stopped)  # Green wipe
-
-      if 1:
-        janim.rainbow_leftright(self.strip, 1, dir=20, func=self.stopped)
-        janim.rainbow_leftright(self.strip, 1, dir=20, func=self.stopped)
-        janim.rainbow_leftright(self.strip, 1, dir=-20, func=self.stopped)
-        janim.rainbow_center(self.strip, 1, dir=20, func=self.stopped)
-        janim.rainbow_center(self.strip, 1, dir=-20, func=self.stopped)
-        janim.rainbow_updown(self.strip, 1, dir=20, func=self.stopped)
-        janim.rainbow_updown(self.strip, 1, dir=-20, func=self.stopped)
+       for entry in self.playlist:
+          print('entry:',entry)
+          if (entry['type']=='image'):
+              # play a gif here
+              janim.animated_gif(self.strip, entry['name'], func=self.stopped) 
+          elif (entry['type']=='colorwipe'):
+              janim.colorWipe(self.strip, neopixel.Color(255, 0, 0), func=self.stopped)  # Red wipe
+          elif (entry['type']=='rainbow'):
+              janim.rainbow_leftright(self.strip, 1, dir=20, func=self.stopped)
 
   
 
@@ -217,11 +215,7 @@ def showplaylist(filepath):
   playlists= []
   print(filepath)
   playlists = playlistloader('playlists/'+filepath)
-  with open('playlists/'+filepath, 'rb') as csvfile:
-     csvreader= csv.reader(csvfile, delimiter=',', quotechar='|')
-     for row in csvreader:
-         playlists.append(row)
-     print(playlists)
+  print(playlists)
   return bottle.template("playlist", playlist=playlists)
 
 @app.route("/playlists/")
@@ -237,8 +231,10 @@ def showplaylists():
 def displayplaylist(filepath):
   if neopixel:
      app.displayThread.stop()
-     app.displayThread = DisplayShowPlaylistThread(app.strip, 'gifs/'+filepath)
+     app.displayThread = DisplayShowPlaylistThread(app.strip, filepath)
      app.displayThread.start()
+  else:
+     a = DisplayShowPlaylistThread(app.strip, filepath)
   return "showplaylist:"+filepath
 
 
@@ -362,7 +358,8 @@ def start():
     app.strip.begin()
     clear_display(app.strip)
 
-    app.displayThread = DisplayJAnimThread(app.strip)
+    #app.displayThread = DisplayJAnimThread(app.strip)
+    app.displayThread = DisplayShowPlaylistThread(app.strip,'playlists/imageloop.csv'):
     app.displayThread.start()
   else:
     app.strip = None
