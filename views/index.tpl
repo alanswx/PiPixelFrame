@@ -6,12 +6,12 @@
 
   <body>
     <h1>LCD Magic</h1>
+<!---
 
     <a href="/client_mode">Client Mode</a>
 <br>
     <a href="/ap_mode">AP Mode</a>
 <br>
-<!---
 <br>
     <a href="/piskel/index.html">Piskel Editor</a>
 <br>
