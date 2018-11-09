@@ -1,4 +1,10 @@
 type,name,timing,r,g,b,repeat
+image,gifs/brownhairguy.gif,default,0,0,0,1
+image,gifs/pac1.gif,default,0,0,0,1
+image,gifs/alice_1.gif,default,0,0,0,1
+image,gifs/mario1.gif,default,0,0,0,1
+image,gifs/smallburger.gif,default,0,0,0,1
+image,gifs/mario_like_anim.gif,default,0,0,0,1
 image,gifs/ase1.gif,default,0,0,0,1
 text,Hello,default,255,0,0,1
 text,Town,default,0,0,255,1
