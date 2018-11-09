@@ -129,7 +129,7 @@ def theaterChaseRainbow(strip, wait_ms=50):
 				strip.setPixelColor(i+q, 0)
 
 def scroll_text(strip, txt, wait_ms=100, textcolor=(255,255,255),func=None):
-  #fnt = fontdemo.Font('helvetica.ttf', 11)
+  #fnt = fontdemo.Font('helvetica.ttf', 8)
   fnt = fontdemo.Font('C64.ttf', 11)
   txt = fnt.render_text('  ' + txt +'  ', 14, 8)
 
@@ -160,8 +160,8 @@ def animated_gif(strip, name,wait_ms=500,func=None,repeat=1):
    if (len(seq)==1):
       wait_ms=1500
    print('viewing images now')
-   for count in range(repeat):
-    for image,duration in seq:
+   #for count in range(repeat):
+   for image,duration in seq:
       rgbim = image.convert('RGB')
       for x in range(8):
         for y in range(8):
