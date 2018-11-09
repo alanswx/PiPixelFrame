@@ -19,8 +19,15 @@ LED_DMA        = 5       # DMA channel to use for generating signal (try 5)
 LED_BRIGHTNESS = 128 # Set to 0 for darkest and 255 for brightest
 LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
 
+def Color(red, green, blue, white = 0):
+	"""Convert the provided red, green, blue color to a 24-bit color value.
+	Each color component should be a value 0-255 where 0 is the lowest intensity
+	and 255 is the highest intensity.
+	"""
+	return (white << 24) | (green << 16)| (red << 8) | blue
 
 def setp(strip, x,y,c):
+    x=7-x
     if y%2 == 0:
         i = y*8+x
     else:
@@ -132,7 +139,7 @@ def scroll_text(strip, txt, wait_ms=100, textcolor=(255,255,255),func=None):
         if x2+x < txt.width: 
           if txt.pixels[(y*txt.width)+(x+x2)]:
             c = Color(textcolor[0],textcolor[1],textcolor[2]) #Color(255,255,255)
-        setp(strip, 7-x2,y,c)
+        setp(strip, x2,y,c)
     strip.show()
     if func and func(): return
     time.sleep(wait_ms/1000.0)
@@ -162,8 +169,8 @@ def animated_gif(strip, name,wait_ms=500,func=None):
       if (duration==0):
          duration=wait_ms
       print(duration)
+      if func and func(): return
       time.sleep(duration/1000.0)
-  if func and func(): return
  except Exception as e:
        print('GIF Exception',e)
        pass
@@ -173,15 +180,16 @@ def main():
   strip.begin()
 
   while 1:
-      animated_gif(strip, 'gifs/policeb2.gif')
-      animated_gif(strip, 'gifs/flappy.gif')
-      animated_gif(strip, 'gifs/mario2.gif')
-      animated_gif(strip, 'gifs/pacman.gif')
-      animated_gif(strip, 'gifs/Lemming_animation.gif')
-      scroll_text(strip, 'Hello Jamie')
+      animated_gif(strip, 'gifs/Hi.gif')
+      #animated_gif(strip, 'gifs/policeb2.gif')
+      #animated_gif(strip, 'gifs/flappy.gif')
+      #animated_gif(strip, 'gifs/mario2.gif')
+      #animated_gif(strip, 'gifs/pacman.gif')
+      #animated_gif(strip, 'gifs/Lemming_animation.gif')
+      #scroll_text(strip, 'Hello Jamie')
 
       colorWipe(strip, Color(255, 0, 0))  # Red wipe
-      if 0:
+      if 1:
         colorWipe(strip, Color(0, 255, 0))  # Blue wipe
         colorWipe(strip, Color(0, 0, 255))  # Green wipe
       # Theater chase animations.
