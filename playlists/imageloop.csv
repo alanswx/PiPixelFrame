@@ -1,4 +1,6 @@
 type,name,timing,r,g,b,repeat
+text,Raise your paddle,default,255,0,0,1
+text,RAISE YOUR PADDLE,default,255,0,0,1
 image,gifs/brownhairguy.gif,default,0,0,0,1
 image,gifs/pac1.gif,default,0,0,0,1
 image,gifs/alice_1.gif,default,0,0,0,1
@@ -6,11 +8,11 @@ image,gifs/mario1.gif,default,0,0,0,1
 image,gifs/smallburger.gif,default,0,0,0,1
 image,gifs/mario_like_anim.gif,default,0,0,0,1
 image,gifs/ase1.gif,default,0,0,0,1
-text,Hello,default,255,0,0,1
-text,Town,default,0,0,255,1
+text,Hi Town,default,0,0,255,1
 image,gifs/ase2.gif,default,0,0,0,1
 image,gifs/ase3.gif,default,0,0,0,1
 image,gifs/ase4.gif,default,0,0,0,1
 image,gifs/ase5.gif,default,0,0,0,1
 image,gifs/ase6.gif,default,0,0,0,1
-image,gifs/tiger_2.gif,default,0,0,0,1
+text,Make it rain,default,255,0,0,1
+image,gifs/tiger_1.gif,default,0,0,0,1
