@@ -148,7 +148,7 @@ class DisplayShowPlaylistThread(StoppableThread):
           print('entry:',entry)
           if (entry['type']=='image'):
               # play a gif here
-              janim.animated_gif(self.strip, entry['name'], func=self.stopped) 
+              janim.animated_gif(self.strip, entry['name'], func=self.stopped,repeat=entry['repeat']) 
           elif (entry['type']=='colorwipe'):
               janim.colorWipe(self.strip, neopixel.Color(255, 0, 0), func=self.stopped)  # Red wipe
           elif (entry['type']=='rainbow'):

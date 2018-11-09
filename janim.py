@@ -144,7 +144,7 @@ def scroll_text(strip, txt, wait_ms=100, textcolor=(255,255,255),func=None):
     if func and func(): return
     time.sleep(wait_ms/1000.0)
 
-def animated_gif(strip, name,wait_ms=500,func=None):
+def animated_gif(strip, name,wait_ms=500,func=None,repeat=1):
  try:
   print('animated_gif',name)
   im = Image.open(name)
@@ -157,7 +157,8 @@ def animated_gif(strip, name,wait_ms=500,func=None):
    except EOFError:
        pass
    print('viewing images now')
-   for image,duration in seq:
+   for count in range(repeat):
+    for image,duration in seq:
       rgbim = image.convert('RGB')
       for x in range(8):
         for y in range(8):
