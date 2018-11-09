@@ -157,7 +157,7 @@ def animated_gif(strip, name,wait_ms=500,func=None,repeat=1):
    except EOFError:
        pass
    if (len(seq)==1):
-      wait_ms=1000
+      wait_ms=1500
    print('viewing images now')
    for count in range(repeat):
     for image,duration in seq:
