@@ -1,9 +1,11 @@
 type,name,timing,r,g,b,repeat
 text,Raise your paddle,default,255,0,0,1
-text,RAISE YOUR PADDLE,default,255,0,0,1
 image,gifs/brownhairguy.gif,default,0,0,0,1
 image,gifs/pac1.gif,default,0,0,0,1
+image,gifs/pac1.gif,default,0,0,0,1
 image,gifs/alice_1.gif,default,0,0,0,1
+image,gifs/alice_1.gif,default,0,0,0,1
+image,gifs/mario1.gif,default,0,0,0,1
 image,gifs/mario1.gif,default,0,0,0,1
 image,gifs/smallburger.gif,default,0,0,0,1
 image,gifs/mario_like_anim.gif,default,0,0,0,1
@@ -12,16 +14,26 @@ text,Hi Town,default,0,0,255,1
 image,gifs/ase2.gif,default,0,0,0,1
 image,gifs/ase3.gif,default,0,0,0,1
 image,gifs/wew_a2.gif,default,0,0,0,1
+image,gifs/wew_a2.gif,default,0,0,0,1
 image,gifs/ase4.gif,default,0,0,0,1
 image,gifs/ase5.gif,default,0,0,0,1
-image,gifs/ase6.gif,default,0,0,0,1
 text,Make it rain,default,255,0,0,1
+image,gifs/tiger_1.gif,default,0,0,0,1
+image,gifs/tiger_1.gif,default,0,0,0,1
 image,gifs/tiger_1.gif,default,0,0,0,1
 image,gifs/whitebird.gif,default,0,0,0,1
 image,gifs/discoball.gif,default,0,0,0,1
+image,gifs/discoball.gif,default,0,0,0,1
 image,gifs/streetfighter.gif,default,0,0,0,1
+image,gifs/duck.gif,default,0,0,0,1
+image,gifs/duck.gif,default,0,0,0,1
 image,gifs/duck.gif,default,0,0,0,1
 image,gifs/cheftest.gif,default,0,0,0,1
 image,gifs/one_coin_animation_8x8.gif,default,0,0,0,1
+image,gifs/one_coin_animation_8x8.gif,default,0,0,0,1
+image,gifs/one_coin_animation_8x8.gif,default,0,0,0,1
 image,gifs/MARIO-8X8.gif,default,0,0,0,1
+image,gifs/MARIO-8X8.gif,default,0,0,0,1
+image,gifs/MARIO-8X8.gif,default,0,0,0,1
+image,gifs/8x8clap.gif,default,0,0,0,1
 image,gifs/8x8clap.gif,default,0,0,0,1
