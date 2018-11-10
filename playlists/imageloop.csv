@@ -2,10 +2,8 @@ type,name,timing,r,g,b,repeat
 text,Raise your paddle,default,255,0,0,1
 image,gifs/brownhairguy.gif,default,0,0,0,1
 image,gifs/pac1.gif,default,0,0,0,1
-image,gifs/pac1.gif,default,0,0,0,1
 image,gifs/alice_1.gif,default,0,0,0,1
 image,gifs/alice_1.gif,default,0,0,0,1
-image,gifs/mario1.gif,default,0,0,0,1
 image,gifs/mario1.gif,default,0,0,0,1
 image,gifs/smallburger.gif,default,0,0,0,1
 image,gifs/mario_like_anim.gif,default,0,0,0,1
@@ -38,5 +36,6 @@ image,gifs/MARIO-8X8.gif,default,0,0,0,1
 image,gifs/disk.gif,default,0,0,0,1
 image,gifs/disk.gif,default,0,0,0,1
 image,gifs/disk.gif,default,0,0,0,1
+image,gifs/8x8clap.gif,default,0,0,0,1
 image,gifs/8x8clap.gif,default,0,0,0,1
 image,gifs/8x8clap.gif,default,0,0,0,1
