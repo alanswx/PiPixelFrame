@@ -230,8 +230,9 @@ def showplaylists():
   return bottle.template("playlist_gallery", playlists=playlists)
 
 @app.route("/showtext")
+def showtext():
   print (bottle.request.forms.items())
-  text = int(bottle.request.query.get('text'))
+  text = bottle.request.query.get('text')
   r= int(bottle.request.query.get('r'))
   g= int(bottle.request.query.get('g'))
   b= int(bottle.request.query.get('b'))

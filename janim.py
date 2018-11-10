@@ -138,8 +138,11 @@ def scroll_text(strip, txt, wait_ms=100, textcolor=(255,255,255),func=None):
       for x2 in range(8):
         c = Color(0,0,0)
         if x2+x < txt.width: 
+         try:
           if txt.pixels[(y*txt.width)+(x+x2)]:
             c = Color(textcolor[0],textcolor[1],textcolor[2]) #Color(255,255,255)
+         except Exception as e:
+           print(e)
         setp(strip, x2,y,c)
     strip.show()
     if func and func(): return
